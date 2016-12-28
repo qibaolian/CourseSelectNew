@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get :list
       get :sumCredit
       get :courseTable
+
     end
   end
 
