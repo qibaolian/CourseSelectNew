@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     end
     collection do
       get :list
+      get :sumCredit
+      get :courseTable
       #post :list
     end
   end
