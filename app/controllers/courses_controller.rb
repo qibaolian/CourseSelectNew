@@ -107,7 +107,6 @@ class CoursesController < ApplicationController
     @course = Course.joins(:course_infos).where(search_string)
     @course=@course-current_user.courses
 
-
     #----------分页功能的实现---------#
     total = @course.count
     params[:total] = total
@@ -130,13 +129,9 @@ class CoursesController < ApplicationController
     end
 
 
-=begin
-    #modified by liqingjian
-    @course=Course.where("open=true")
-    @course=@course-current_user.courses
-    #modified end
-=end
+
   end
+
 
   def sumCredit#lvfeng
     @courses=current_user.courses if student_logged_in?
@@ -169,6 +164,7 @@ class CoursesController < ApplicationController
       end
     end
   end
+
 
   def select
     @course=Course.find_by_id(params[:id])
