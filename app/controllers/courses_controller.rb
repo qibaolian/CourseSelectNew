@@ -139,7 +139,7 @@ class CoursesController < ApplicationController
     #----------分页功能的实现---------#
     total = @course.count
     params[:total] = total
-    if(params[:page] == nil)
+    if params[:page] == nil
       params[:page] = 1  #进行初始化
     end
     if total % $PageSize == 0
@@ -161,17 +161,56 @@ class CoursesController < ApplicationController
 
   end
 
-
+  #解决各种选课冲突
   def select
     @course=Course.find_by_id(params[:id])
+    #课程没有余量
+    if @course.limit_num == @course.student_num
+      flash={:danger => "该课程已满: #{@course.name}"}
+      redirect_to courses_path, flash: flash and return
+    end
+
+    #选择同一门课（不是一个班）
+    current_user.courses.each do |c|
+      if c.name == @course.name
+        flash={:danger => "你过去已经选择了课程: #{@course.name}"}
+        redirect_to courses_path, flash: flash and return
+      end
+    end
+
+
+    #时间存在冲突
+    @course=Course.find_by_id(params[:id])
+    current_user.courses.each do |c|
+      @course_info = CourseInfo.find_by_course_code(c.id)
+      interval_c = @course_info.course_class.split('_')
+      @course.course_infos.each do |ci|
+        interval_ci = ci.course_class.split('_')
+        #（情形1）开始早于已选课的开始，结束晚于已选课的开始
+        if ci.course_day == @course_info.course_day
+          if (interval_c[0].to_i > interval_ci[0].to_i && interval_c[0].to_i < interval_ci[1].to_i) ||
+          #（情形2）开始晚于已选课的开始，结束早于已选课的结束
+              (interval_c[0].to_i <= interval_ci[0].to_i && interval_c[1].to_i >= interval_ci[1].to_i) ||
+          #（情形3）开始早于已选课的结束，结束晚于已选课的结束
+              (interval_c[1].to_i > interval_ci[0].to_i && interval_c[1].to_i < interval_ci[1].to_i)
+            flash={:danger => "课程:(#{@course.name}) 和课程:(#{c.name})在时间上存在冲突"}
+            redirect_to courses_path, flash: flash and return
+          end
+        end
+      end
+    end
+
+    #成功选课
     current_user.courses<<@course
+    @course.update_attribute("student_num", (@course.student_num + 1))
     flash={:success => "成功选择课程: #{@course.name}"}
-    redirect_to courses_path, flash: flash
+    redirect_to courses_path, flash: flash and return
   end
 
   def quit
     @course=Course.find_by_id(params[:id])
     current_user.courses.delete(@course)
+    @course.update_attribute("student_num", (@course.student_num - 1))
     flash={:success => "成功退选课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end

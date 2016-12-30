@@ -113,7 +113,11 @@
                     <td><%= @course[i].teaching_type %></td>
                     <td><%= @course[i].exam_type %></td>
                     <td><%= @course[i].teacher.name %></td>
-                    <td><%= link_to "加入课程", select_course_path(@course[i]), class: 'btn-sm btn-info' %></td>
+                    <% if @course[i].limit_num == @course[i].student_num %>
+                      <td><%= link_to "课程已满", 'javascript:void(0);', class: 'btn-sm btn-danger disabled' %>
+                    <% else%>
+                      <td><%= link_to "加入课程", select_course_path(@course[i]), class: 'btn-sm btn-info' %></td>
+                    <% end %>
 
                   </tr>
               <% end %>
