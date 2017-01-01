@@ -207,6 +207,14 @@ class CoursesController < ApplicationController
     redirect_to courses_path, flash: flash and return
   end
 
+
+  #查看课程的详细信息
+  def info
+    @course=Course.find_by_id(params[:id])
+  end
+
+
+
   def quit
     @course=Course.find_by_id(params[:id])
     current_user.courses.delete(@course)
