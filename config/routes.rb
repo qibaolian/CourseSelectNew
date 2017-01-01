@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admin/default'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -14,7 +16,9 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/rails_admin', as: 'rails_admin'
+  mount Inform::Engine => "/inform",as:'inform'
+  get "admin"=>"admin#default",as:'admin'
   mount RuCaptcha::Engine => "/rucaptcha"
   root 'homes#index'
 
