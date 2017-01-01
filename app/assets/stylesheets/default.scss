@@ -1,0 +1,10 @@
+// Place all the styles related to the default controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap/theme';
+body{
+  background-image: image_url("background.jpg");
+  background-size:100% auto;
+}
