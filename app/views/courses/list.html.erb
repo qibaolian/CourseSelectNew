@@ -123,6 +123,7 @@
               <% end %>
               </tbody>
             </table>
+            <hr>
             <%# --------------------分页-----------------------%>
             <div id="nav">
               <input type="hidden" name="page" value=<%= params[:page]%>>
@@ -141,7 +142,7 @@
                                     '&course_name='+params[:course_name]+'&authenticity_token='+
                                      params[:authenticity_token]+'&page='+(params[:page].to_i - 1).to_s %>>上一页</a></li>
                   <% end %>
-                    <li class="disabled"><a>当前为第<%= params[:page] %>页 共<%= params[:pageNum] %>页</a></li>
+                    <li><a>共<%= params[:total] %>条记录 当前为第<%= params[:page] %>页 共<%= params[:pageNum] %>页</a></li>
                   <% if params[:page].to_i == params[:pageNum]%>
                     <li class="disabled"><a>下一页</a></li>
                     <li class="disabled"><a>末页</a></li>
