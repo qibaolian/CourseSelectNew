@@ -2,6 +2,8 @@ class GradesController < ApplicationController
 
   before_action :teacher_logged_in, only: [:update]
 
+  respond_to :html, :xls
+
   def update
     @grade=Grade.find_by_id(params[:id])
     if @grade.update_attributes!(:grade => params[:grade][:grade])
@@ -23,6 +25,17 @@ class GradesController < ApplicationController
     end
   end
 
+  def excel
+    if teacher_logged_in?
+      @course=Course.find_by_id(params[:course_id])
+      @grades=@course.grades
+      respond_with @grades
+    elsif student_logged_in?
+      @grades=current_user.grades
+    else
+      redirect_to root_path, flash: {:warning=>"请先登陆"}
+    end
+  end
 
   private
 
