@@ -16,9 +16,13 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  mount RailsAdmin::Engine => '/rails_admin', as: 'rails_admin'
-  mount Inform::Engine => "/inform",as:'inform'
   get "admin"=>"admin#default",as:'admin'
+  mount RailsAdmin::Engine => 'admin/user', as: 'rails_admin'
+  mount Inform::Engine => "admin/inform",as:'inform'
+
+
+
+
   mount RuCaptcha::Engine => "/rucaptcha"
   root 'homes#index'
 
