@@ -14,6 +14,10 @@
           <table class="table table-striped table-hover">
             <thead>
 
+            <%=
+              link_to "打印选课学生信息", excel_grades_path(:course_id=>@course.id,:format=>:xls), class:'btn btn-lg btn-info'
+            %>
+
             <tr>
               <th>学号</th>
               <th>名字</th>

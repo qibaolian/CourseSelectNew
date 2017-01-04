@@ -42,6 +42,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # for postgresql
 gem 'pg', '~> 0.18.4'
 
+gem 'ekuseru'
+gem 'responders', '~> 2.0'
+
 gem 'rucaptcha'
 # gem 'bcrypt', '~> 3.1.7'
 
