@@ -42,24 +42,6 @@ class CoursesController < ApplicationController
     flash={:success => "成功删除课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
-
-=begin
-  #modified by liqingjian
-  def open
-    @course=Course.find_by_id(params[:id])
-    @course.update_attribute(:open,true)
-
-    redirect_to courses_path, flash: {:success => "已经成功开启该课程:#{ @course.name}"}
-  end
-
-  def close
-    @course=Course.find_by_id(params[:id])
-    @course.update_attribute(:open,false)
-    redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
-  end
-
-  #modified end
-=end
   #-------------------------for students----------------------
   def sumCredit#lvfeng
     @courses=current_user.courses if student_logged_in?

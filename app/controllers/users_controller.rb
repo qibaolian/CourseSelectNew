@@ -22,11 +22,16 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by_id(params[:id])
-    if @user.update_attributes(user_params)
-      flash={:info => "更新成功"}
+    if @user.authenticate(params[:user][:original_password])
+      if @user.update_attributes(user_params)
+        flash={:info => "更新成功"}
+      else
+        flash={:warning => "更新失败，两次密码输入不同"}
+      end
     else
-      flash={:warning => "更新失败"}
+      flash={:danger => "原密码不正确"}
     end
+
     redirect_to root_path, flash: flash
   end
 
@@ -44,7 +49,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :major, :department, :password,
+    params.require(:user).permit(:email, :password,
                                  :password_confirmation)
   end
 

@@ -101,17 +101,11 @@
 
 <script>
 
-  /*$(function () {
-    $('#modal_form').on('hide.bs.modal', function () {
-
-    });
-  });*/
-
   $('#modal-submit').click(function () {
     window.location.href = $('#modal-submit').attr('href');
   });
 
-    $('#myModal').on('show.bs.modal', function (e) {
+  $('#myModal').on('show.bs.modal', function (e) {
     //获取是单击了哪个按钮
     var button = $(e.relatedTarget);
     var name = '确定要删除课程：'+ button.data('name') + '?';
