@@ -52,6 +52,30 @@
             <% end %>
             </tbody>
           </table>
+          <%#----------分页---------%>
+          <div id="nav">
+            <input type="hidden" name="page" value=<%= params[:page]%>>
+            <nav style="text-align: center">
+              <ul class="pagination">
+                <% if params[:page].to_i == 1%>
+                   <li class="disabled"><a>首页</a></li>
+                   <li class="disabled"><a>上一页</a></li>
+                <% else %>
+                   <li><a href=<%= courses_path + '?page=1'%> >首页</a></li>
+                   <li><a href=<%= courses_path + '?page='+(params[:page].to_i - 1).to_s %>>上一页</a></li>
+                <% end %>
+                <li class="disabled"><a>当前为第<%= params[:page] %>页 共<%= params[:pageNum] %>页</a></li>
+                <% if params[:page].to_i == params[:pageNum]%>
+                    <li class="disabled"><a>下一页</a></li>
+                    <li class="disabled"><a>末页</a></li>
+                <% else %>
+                    <li><a href=<%=  courses_path + '?page=' + (params[:page].to_i + 1).to_s %> >下一页</a></li>
+                    <li><a href=<%=  courses_path + '?page=' + params[:pageNum].to_s %>>末页</a></li>
+                <% end %>
+              </ul>
+            </nav>
+        </div>
+
         </div>
       </div>
     </div>
