@@ -3,6 +3,7 @@ source 'https://gems.ruby-china.org'
 gem 'bootstrap-sass', '~> 3.3.7'
 
 gem 'inform',:path => "vendor/inform"
+gem 'prawn'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.11'
 gem 'faker', '~> 1.6.3'
