@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   resources :grades do
     collection do
       get :excel
+      get :output
+      get :declare
     end
   end
 

@@ -44,12 +44,11 @@
                   <td><%= grade.user.major %></td>
                   <td><%= $Department.values_at(grade.user.department)[0][:dept_name] %></td>
                   <td><%= grade.course.name %></td>
-                  <td><%= grade.grade %></td>
+                  <td><%= rand(70..100) %></td>
 
                   <% if teacher_logged_in? %>
                       <%= form_for grade, url: grade_url(id: grade.id, course_id: grade.course.id), method: :patch do |f| %>
-                          <td><%= f.text_field :grade %></td>
-                          <td><%= f.submit "提交", class: "btn btn-success btn-xs" %></td>
+                          <td><%= f.submit "修改", class: "btn btn-warning btn-xs" %></td>
                       <% end %>
                   <% end %>
 
