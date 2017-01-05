@@ -1,0 +1,29 @@
+<form class="form-horizontal" role="form" method="get" action= <%= apply_path %>>
+  <div class="form-group well" style="margin-left: 10px; margin-right: 10px">
+
+
+    <div class="col-sm-2">
+      <label>班级</label>
+      <select  class="form-control" name="sclass">
+        <% (0..1).each do |i|%>
+            <%# ------保留上一次的输入-------%>
+            <% if params[:sclass] != i.to_s %>
+                <option value= <%= i %>><%= $Sclass.values_at(i).first %></option>
+            <% else%>
+                <option value= <%= i %> selected><%= $Sclass.values_at(i).first %></option>
+            <% end %>
+        <% end %>
+      </select>
+    </div>
+    <div class="col-sm-3">
+      <label for="submit"></label>
+      <input type="submit" class="btn btn-block btn-info" name= "submit" value="打印选课单" style="width: 50%; margin: auto">
+    </div>
+
+  </div>
+
+
+
+</form>
+
+

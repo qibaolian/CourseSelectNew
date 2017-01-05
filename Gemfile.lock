@@ -102,7 +102,11 @@ GEM
     nested_form (0.3.2)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    pdf-core (0.6.1)
     pg (0.18.4)
+    prawn (2.1.0)
+      pdf-core (~> 0.6.1)
+      ttfunk (~> 1.4.0)
     rack (1.6.5)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -188,6 +192,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
+    ttfunk (1.4.0)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -215,6 +220,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg (~> 0.18.4)
+  prawn
   rails (= 4.2.5.2)
   rails_12factor
   rails_admin (~> 0.8.1)

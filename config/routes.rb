@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'apply/index'
+
 
   get 'admin/default'
 
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
   get "admin"=>"admin#default",as:'admin'
   mount RailsAdmin::Engine => 'admin/user', as: 'rails_admin'
   mount Inform::Engine => "admin/inform",as:'inform'
-
+  get "admin/apply"=>"apply#index",as:'apply'
 
 
 
