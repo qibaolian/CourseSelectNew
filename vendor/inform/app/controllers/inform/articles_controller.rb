@@ -58,4 +58,11 @@ module Inform
         params.require(:article).permit(:title, :text)
       end
   end
+  module Config
+    class << self
+      attr_accessor :main_app_name
+      def authenticate_with(&blk)
+      end
+    end
+  end
 end
