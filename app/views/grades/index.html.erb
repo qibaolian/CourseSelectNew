@@ -17,16 +17,16 @@
             <%=
               link_to "打印选课学生信息", excel_grades_path(:course_id=>@course.id,:format=>:xls), class:'btn btn-lg btn-info'
             %>
-            <% end %>
-
-
             <%=
               link_to "上传学生成绩", output_grades_path(:course_id=>@course.id), class:'btn btn-lg btn-info'
             %>
-
             <%=
-              link_to "发布成绩", declare_grades_path(:course_id=>@course.id), class:'btn btn-lg btn-info'
+               link_to "发布成绩", declare_grades_path(:course_id=>@course.id), class:'btn btn-lg btn-info'
             %>
+            <% end %>
+
+
+
             <tr>
               <th>学号</th>
               <th>名字</th>

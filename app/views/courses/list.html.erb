@@ -90,6 +90,7 @@
                 <th>序号</th>
                 <th>课程编号</th>
                 <th>课程名称</th>
+                <th>上课时间</th>
                 <th>课时/学分</th>
                 <th>限选</th>
                 <th>已选</th>
@@ -106,6 +107,12 @@
                     <td><%= i+1 %></td>
                     <td><%= link_to @course[i].course_code, info_course_path(@course[i]), :target=>"_blank"%></td>
                     <td><%= @course[i].name %></td>
+                    <td><% string=''
+                      @course[i].course_infos.each do |c|
+                          string += '周' +c[:course_day] +'（'+c[:course_class] + '节） '
+                      end
+                    %>
+                    <%= string %></td>
                     <td><%= @course[i].course_time %>/<%= @course[i].credit %></td>
                     <td><%= @course[i].limit_num %></td>
                     <td><%= @course[i].student_num %></td>
