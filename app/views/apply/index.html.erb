@@ -1,0 +1,55 @@
+<form class="form-horizontal" role="form" method="get" action= <%= apply_path %>>
+  <div class="form-group well" style="margin-left: 10px; margin-right: 10px">
+
+
+    <div class="col-sm-2">
+      <label>班级</label>
+      <select  class="form-control" id="sclass" name="sclass">
+        <% (0..1).each do |i|%>
+            <%# ------保留上一次的输入-------%>
+            <% if params[:student_class] != i.to_s %>
+                <option value= <%= i %>><%= $Sclass.values_at(i).first %></option>
+            <% else%>
+                <option value= <%= i %> selected><%= $Sclass.values_at(i).first %></option>
+            <% end %>
+        <% end %>
+      </select>
+    </div>
+
+
+
+
+
+    <div class="col-sm-3">
+      <label for="submit"></label>
+      <input type="submit" class="btn btn-block btn-info" id="submit" name= "submit" value="查询" style="width: 50%; margin: auto">
+    </div>
+
+  </div>
+
+
+
+</form>
+
+
+
+<table class="table table-striped table-hover">
+  <thead>
+
+  <tr>
+    <th>序号</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @user.each do |i| %>
+      <tr class="tr-hover">
+
+
+        <td><%= i.name %></td>
+
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>

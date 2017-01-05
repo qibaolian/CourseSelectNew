@@ -4,3 +4,7 @@ class Depart < ActiveRecord::Base
 
   validates :dept_name, :dept_contact, :dept_office, presence: true
 end
+
+module Inform
+
+end
