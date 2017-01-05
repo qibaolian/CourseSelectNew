@@ -7,6 +7,8 @@ gem 'inform',:path => "vendor/inform"
 gem 'bcrypt', '~> 3.1.11'
 gem 'faker', '~> 1.6.3'
 gem 'rails_admin', '~> 0.8.1'
+#邮件服务
+gem 'sendgrid-ruby'
 
 # gem 'carrierwave'
 # gem 'paperclip'
