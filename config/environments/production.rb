@@ -78,17 +78,18 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   #邮件配置
+  host = 'course621.herokuapp.com'
+  config.action_mailer.default_url_options = {host: host}
+  ActionMailer::Base.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  host = 'course621.herokuapp.com'  #修改成你自己的域名
-  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.default :charset => "utf-8"
   ActionMailer::Base.smtp_settings = {
-      :address        => 'smtp.sendgrid.net',
-      :port           => '587',
-      :authentication => :plain,
-      :user_name      => ENV['SENDGRID_USERNAME'],
-      :password       => ENV['SENDGRID_PASSWORD'],
-      :domain         => 'heroku.com',
-      :enable_starttls_auto => true
+      :address => "smtp.yeah.net", #邮件服务器地址
+      :port => 25,
+      :domain => "yeah.net", #服务器域名，如xxx@yeah.net域名就是yeah.net
+      :authentication => :login,
+      :user_name => "hydrogenlee",  #邮件用户名，如xxx@yeah.net用户名就是xxx
+      :password => "4132zllqjthywawj",  #与登录密码不同，此处是客户端授权密码，切记！
   }
 end
