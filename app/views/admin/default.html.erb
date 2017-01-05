@@ -1,15 +1,19 @@
-<%= stylesheet_link_tag    "default", media: "all" %>
+<%= stylesheet_link_tag "default"%>
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="col-md-1">
-      <%= link_to image_tag("inform.png", :class => "pic"), inform_path%>
+      <%= link_to image_tag("admin/inform.png", :class => "pic"), inform_path%>
       <h6>公告编辑</h6>
       </div>
       <div class="col-md-1 col-md-offset-1">
-        <%= link_to image_tag("user.png", :class => "pic"), rails_admin_path%>
+        <%= link_to image_tag("admin/user.png", :class => "pic"), rails_admin_path%>
         <h6>用户管理</h6>
-        </div>
+      </div>
+      <div class="col-md-1 col-md-offset-1">
+        <%= link_to image_tag("admin/agree.png", :class => "pic"), apply_path%>
+        <h6>选课打印</h6>
+      </div>
     </div>
   </div>
 </div>

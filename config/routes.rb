@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get 'apply/index'
+
+
   get 'admin/default'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -16,12 +20,18 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  mount RailsAdmin::Engine => '/rails_admin', as: 'rails_admin'
-  mount Inform::Engine => "/inform",as:'inform'
   get "admin"=>"admin#default",as:'admin'
+  mount RailsAdmin::Engine => 'admin/user', as: 'rails_admin'
+  mount Inform::Engine => "admin/inform",as:'inform'
+  get "admin/apply"=>"apply#index",as:'apply'
+
+  get "help"=>"help#show",as:'help'
+
+
+
   mount RuCaptcha::Engine => "/rucaptcha"
   root 'homes#index'
-
+  get "/homes/index3"
 
   resources :courses do
     member do
@@ -57,6 +67,8 @@ Rails.application.routes.draw do
   post 'sessions/login' => 'sessions#create'
   delete 'sessions/logout' => 'sessions#destroy'
 
+
+  resources :password_resets, only:[:new, :create, :edit, :update]
 
   # Example resource route with options:
   #   resources :products do
