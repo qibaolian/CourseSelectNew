@@ -52,11 +52,6 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(digest).is_password?(token)
   end
 
-  def authenticated?(attribute, token)
-    digest = send("#{attribute}_digest}")
-    return false if digest.nil?
-    BCrypt::Password.new(digest).is_password?(token)
-  end
   #设置密码相关属性
   def create_reset_digest
     self.reset_token = User.new_token

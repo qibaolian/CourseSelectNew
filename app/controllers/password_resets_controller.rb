@@ -25,10 +25,10 @@ class PasswordResetsController < ApplicationController
     if params[:user][:password].empty?
       @user.errors.add(:password, "密码不能为空")
       render 'edit'
-    elsif @user.update_attributes(user.params)
+    elsif @user.update_attributes(user_params)
       log_in @user
       flash[:success] = "密码修改成功"
-      redirect_to @user
+      redirect_to root_url
     else
       render 'edit'
     end
@@ -45,7 +45,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def valid_user
-    unless @user && @user.authenticated?(:reset, param[:id])
+    unless @user && @user.user_authenticated?(:reset, params[:id])
       redirect_to root_url
     end
   end

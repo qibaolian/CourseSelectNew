@@ -2,20 +2,20 @@
   <div class="col-sm-offset-4 col-sm-4">
     <div class="panel panel-success">
       <div class="panel-heading" align="center">
-        <h2></span> 找回密码</h2>
+        <h2></span> 重置密码</h2>
       </div>
       <div class="panel-body">
 
         <%= form_for(:password_reset, url: password_resets_path, method: :post, html: {role: 'form'}) do |f| %>
             <div class="form-group">
-              <%= f.label :email, "请输入需要找回密码的邮箱" %>
+              <%= f.label :email, "请输入需要重置密码的邮箱" %>
               <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
                 <%= f.email_field :email, class: 'form-control', placeholder: "输入邮箱" %>
               </div>
             </div>
             <%= button_tag(type: "submit", class: "btn btn-success btn-block") do %>
-                <span class="glyphicon glyphicon-off"></span>找回密码
+                <span class="glyphicon glyphicon-off"></span>重置密码
             <% end %>
 
         <% end %>

@@ -6,8 +6,8 @@
       </div>
       <div class="panel-body">
 
-        <%= form_for(@user, url: password_reset_path(params[:id]), method: :post, html: {role: 'form'}) do |f| %>
-           <%= render 'shared/error_messages'%>
+        <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+           <%= render 'shared/error_messages', :object => @user%>
             <%= hidden_field_tag :email, @user.email %>
             <div class="form-group">
               <div class="input-group">
@@ -21,6 +21,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
                 <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "再次输入密码" %>
               </div>
+            <br>
             </div>
             <%= button_tag(type: "submit", class: "btn btn-success btn-block") do %>
                 <span class="glyphicon glyphicon-off"></span>更改密码

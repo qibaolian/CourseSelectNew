@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   #邮件配置
-  host = 'course621.herokuapp.com'
+  host = 'localhost:3000'
   config.action_mailer.default_url_options = {host: host}
   ActionMailer::Base.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
