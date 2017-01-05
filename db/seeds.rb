@@ -80,6 +80,16 @@ User.create(
     admin: true
 )
 
+User.create(
+    name: "李庆建",
+    email: "1481458089@qq.com",
+    num: "201628008629001",
+    major: "计算机软件与理论",
+    department: 9,
+    password: "password",
+    password_confirmation: "password"
+)
+
 
 teacher_map={
     1 => {name: "胡伟武", department_id: 9},

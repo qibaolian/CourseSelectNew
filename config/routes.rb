@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+
   get 'apply/index'
+
 
   get 'admin/default'
 
@@ -61,6 +63,8 @@ Rails.application.routes.draw do
   post 'sessions/login' => 'sessions#create'
   delete 'sessions/logout' => 'sessions#destroy'
 
+
+  resources :password_resets, only:[:new, :create, :edit, :update]
 
   # Example resource route with options:
   #   resources :products do
