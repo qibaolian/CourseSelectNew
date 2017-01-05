@@ -39,7 +39,8 @@
                       <td><%= link_to "删除", course_path(@course[i]), :method => "delete", class: 'btn btn-xs btn-danger',
                                       :data => {confirm: '确定要删除此课程?'} %></td>
                   <% elsif student_logged_in? %>
-                      <td><%= link_to "删除", '', class: 'btn-sm btn-danger', :data =>{toggle: 'modal', target: '#myModal', path: quit_course_url(@course[i]), name: @course[i].name} %></td>
+                      <td><%= link_to "删除", '', class: 'btn-sm btn-danger', :data =>{toggle: 'modal',
+                               target: '#myModal', path: quit_course_url(@course[i]), name: @course[i].name} %></td>
                   <% end %>
                 </tr>
             <% end %>
@@ -76,7 +77,8 @@
 </div>
 
 <!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
