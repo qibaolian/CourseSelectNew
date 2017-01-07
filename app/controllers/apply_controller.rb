@@ -1,11 +1,15 @@
 class ApplyController < ApplicationController
   before_action :admin_logged_in
   require "prawn"
-  $Sclass = {
-      0 => '--请选择班级--',
-      1 => '20160713'
-  }
+  hashh=Hash.new
+  hashh[0]='--请选择班级--'
+  Institute.all.each do |f|
+    hashh[f.id]=f.class_code.to_s
+  end
+  $Sclass=hashh
+
   def index
+    @ins=Institute.all
     search_string = "false"
     if params[:submit] != nil
       if params[:sclass] != '0'

@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label :title,value:"公告标题:" %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field" >
-    <%= f.label :text %><br>
+    <%= f.label :text ,value:"公告内容:"%><br>
     <%= f.text_area :text %>
   </div>
     <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit value:"提交"%>
   </div>
 <% end %>
 
