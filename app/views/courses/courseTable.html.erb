@@ -7,91 +7,164 @@
     <div class="col-sm-10">
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <h3 class="panel-title">课程表</h3>
+          <h3 class="panel-title"><%= $Department.values_at(current_user.department)[0][:dept_name] %>
+            <%= current_user.name %> <% time1=Time.new %>
+            <% if time1.month>=2 && time1.month<=9%>
+                <%= time1.year %>秋季学期课程表
+            <% else %>
+                <%= time1.year %>春季学期课程表
+            <% end%>
+            </h3>
         </div>
         <div class="panel-body" style="min-height: 450px">
-          <table class="table table-striped table-hover table-bordered">
+          <table class="table table-striped table-hover table-bordered" width="100%">
             <thead>
             <tr>
-              <th ></th>
-              <th>节次（上课时间）/星期</th>
-              <th>星期一</th>
-              <th>星期二</th>
-              <th>星期三</th>
-              <th>星期四</th>
-              <th>星期五</th>
-              <th>星期六</th>
-              <th>星期日</th>
+              <th width="3%"></th>
+              <th width="13%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>节次（上课时间）/星期</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期一</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期二</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期三</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期四</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期五</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期六</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期日</th>
             </tr>
             </thead>
             <tbody>
                 <tr>
-                  <th  rowspan="4" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>上午</th>
-                  <th >01（08：30-09：20）</th>
+                 <th  rowspan="4" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>上午</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>01（08：30-09：20）</th>
+                  <% j=0 %>
                   <% @courseT[0,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th  rowspan=<%= @courseT[1*7+j] %> rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
                 <tr>
-                  <th>02（09：20-10：10）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>02（09：20-10：10）</th>
+                  <% j=0 %>
                   <% @courseT[7,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th  rowspan=<%= @courseT[2*7+j] %> rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
                 <tr>
-                  <th>03（10：30-11：20）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>03（10：30-11：20）</th>
+                  <% j=0 %>
                   <% @courseT[14,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th rowspan=<%= @courseT[3*7+j] %> rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
                 <tr>
-                  <th>04（11：20-12：10）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>04（11：20-12：10）</th>
+                  <% j=0 %>
                   <% @courseT[21,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th rowspan=<%= @courseT[4*7+j] %> rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
                 <tr>
                   <th rowspan="4" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>下午</th>
-                  <th>05（13：30-14：20）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>05（13：30-14：20）</th>
+                  <% j=0 %>
                   <% @courseT[28,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th  rowspan=<%= @courseT[5*7+j] %> rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
                 <tr>
-                  <th>06（14：20-15：10）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>06（14：20-15：10）</th>
+                  <% j=0 %>
                   <% @courseT[35,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th  rowspan=<%= @courseT[6*7+j] %> rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
                 <tr>
-                  <th>07（15：30-16：20）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>07（15：30-16：20）</th>
+                  <% j=0 %>
                   <% @courseT[42,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th  rowspan=<%= @courseT[7*7+j] %> rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
                 <tr>
-                  <th>08（16：20-17：10）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>08（16：20-17：10）</th>
+                  <% j=0 %>
                   <% @courseT[49,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th  rowspan=<%= @courseT[8*7+j] %> rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
                 <tr>
                   <th rowspan="3" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>晚上</th>
-                  <th>09（19：00-19：50）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>09（19：00-19：50）</th>
+                  <% j=0 %>
                   <% @courseT[56,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th  rowspan=<%= @courseT[9*7+j] %> rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
                 <tr>
-                  <th>10（19：50-20：40）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>10（19：50-20：40）</th>
+                  <% j=0 %>
                   <% @courseT[63,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th  rowspan=<%= @courseT[10*7+j] %> rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
                 <tr>
-                  <th>11（20：40-21：50）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>11（20：40-21：50）</th>
+                  <% j=0 %>
                   <% @courseT[70,7].each do |courseT| %>
-                      <td><%= courseT %></td>
+                      <% if courseT == 2 || courseT == 3  || courseT == 4%>
+
+                      <% else %>
+                          <th   rowspan=$rowspan style='vertical-align: middle;text-align: center;'><%= courseT%></th>
+                      <% end %>
+                      <% j=j+1 %>
                   <% end %>
                 </tr>
             </tbody>
@@ -99,11 +172,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-10 pull-right">
-      <div class="alert alert-info text-center">
-        注：课程名[上课周数][上课地点],例：计算机网络[2-20 ][教1-107]表示计算机网络课从第2周上到第20周,上课地点在教1-107
-      </div>
-    </div>
+
   </div>
 </div>
 

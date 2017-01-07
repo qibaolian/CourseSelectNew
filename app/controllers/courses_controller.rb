@@ -61,19 +61,26 @@ class CoursesController < ApplicationController
   def courseTable#course table
     @courses=current_user.courses if student_logged_in?
     @courseT=Array.new(77,'')
+    @courseT1=Array.new(77,0)
     @courses.each do |i|
       @courseI=CourseInfo.find_by_course_code(i.id)
       j=@courseI
+      a=j.course_class.to_i-1
       if j.course_class.to_i>9
-        a=Array(j.course_class.to_i-1..j.course_class[3,2].to_i-1)
+        b=j.course_class[3,2].to_i-j.course_class.to_i+1
       else
-        a=Array(j.course_class.to_i-1..j.course_class[2,2].to_i-1)
+        b=j.course_class[2,2].to_i-j.course_class.to_i+1
       end
-      a.each do |s|
-        @courseT[s*7+(j.course_day.to_i-1)]=i.name+"["+i.course_week+"]"+"["+i.class_room+"]"
+      @courseT[a*7+(j.course_day.to_i-1)]=i.name+"[第"+j.course_class+"节]"+"[第"+i.course_week+"周]"+"["+i.class_room+"]"
+      @courseT1[a*7+(j.course_day.to_i-1)]=b
+      k=1
+      while k<b do
+        @courseT[(a+k)*7+(j.course_day.to_i-1)]=b
+        k=k+1
       end
     end
   end
+
 
   def list
 

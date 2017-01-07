@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20170107052308) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "announcements", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "announcement_content"
