@@ -14,17 +14,24 @@
           <table class="table table-striped table-hover">
             <thead>
             <% if teacher_logged_in? %>
+                <div class="form-group">
+                  <div class="col-sm-9">
             <%=
-              link_to "打印选课学生信息", excel_grades_path(:course_id=>@course.id,:format=>:xls), class:'btn btn-lg btn-info'
+              link_to "打印选课学生信息", excel_grades_path(:course_id=>@course.id,:format=>:xls), class:'btn  btn-info'
             %>
+
+                <%= form_tag 'grades/mystore', :multipart => true do%>
+                    <%= hidden_field_tag('course_id', @course.id) %>
+                    <%= file_field_tag :localfile %>
+                    <%= submit_tag "上传"%>
+                <% end %>
+
             <%=
-              link_to "上传学生成绩", output_grades_path(:course_id=>@course.id), class:'btn btn-lg btn-info'
-            %>
-            <%=
-               link_to "发布成绩", declare_grades_path(:course_id=>@course.id), class:'btn btn-lg btn-info'
+               link_to "发布成绩", declare_grades_path(:course_id=>@course.id), class:'btn  btn-info'
             %>
             <% end %>
-
+            </div>
+            </div>
 
 
             <tr>

@@ -45,8 +45,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # for postgresql
 gem 'pg', '~> 0.18.4'
 
+#下载学生信息
 gem 'ekuseru'
 gem 'responders', '~> 2.0'
+
+#上传成绩
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+gem 'roo', '~> 1.13.2'
 
 gem 'rucaptcha'
 # gem 'bcrypt', '~> 3.1.7'
