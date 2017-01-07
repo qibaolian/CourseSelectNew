@@ -162,7 +162,7 @@ class CoursesController < ApplicationController
               (interval_c[0].to_i <= interval_ci[0].to_i && interval_c[1].to_i >= interval_ci[1].to_i) ||
           #（情形3）开始早于已选课的结束，结束晚于已选课的结束
               (interval_c[1].to_i > interval_ci[0].to_i && interval_c[1].to_i < interval_ci[1].to_i)
-            flash={:danger => "#{@course.name} 和 #{c.name})在时间上存在冲突"}
+            flash={:danger => "#{@course.name} 和 #{c.name} 在时间上存在冲突"}
             redirect_to courses_path, flash: flash and return
           end
         end
