@@ -1,5 +1,5 @@
 module Inform
-  class ArticlesController < ApplicationController
+  class ApplicationController < ActionController::Base
     include SessionsHelper
     before_action :admin_logged_in
     private

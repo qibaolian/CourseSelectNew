@@ -861,8 +861,20 @@ Inform::Article.create!(
 
                                2016年8月26日"
 )
+institute_map={
+    1 => {class_code: "20160713", name: "沈阳计算所"},
+    2 => {class_code: "20160714", name: "某1研究所"},
+    3 => {class_code: "20160715", name: "某2研究所"},
+    4 => {class_code: "20160716", name: "某3研究所"}
+}
 
 
+institute_map.keys.each do |f|
+  Institute.create!(
+      class_code: institute_map[f][:class_code],
+      name: institute_map[f][:name],
+  )
+end
 
 
 

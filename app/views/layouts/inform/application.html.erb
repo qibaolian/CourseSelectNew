@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>公告操作</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'inform', 'data-turbolinks-track' => true %>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<%= render partial: 'layouts/inform/header' %>
+<%= yield %>
+<%= render partial: 'layouts/footer' %>
+
+</body>
+</html>

@@ -1,15 +1,16 @@
 <form class="form-horizontal" role="form" method="get" action= <%= apply_path %>>
   <div class="form-group well" style="margin-left: 10px; margin-right: 10px">
-
+    <div class="col-md" >
+      <h4>研究所/班级:</h4>
+    </div>
     <div class="col-sm-2">
-
       <select  class="form-control" name="sclass">
-        <% (0..1).each do |i|%>
+        <% $Sclass.each do |key,value|%>
             <%# ------保留上一次的输入-------%>
-            <% if params[:sclass] != i.to_s %>
-                <option value= <%= i %>><%= $Sclass.values_at(i).first %></option>
+            <% if params[:sclass] != key.to_s %>
+                <option value= <%= key %>><%= value %></option>
             <% else%>
-                <option value= <%= i %> selected><%= $Sclass.values_at(i).first %></option>
+                <option value= <%= key %> selected><%= value %></option>
             <% end %>
         <% end %>
       </select>
@@ -19,9 +20,17 @@
     </div>
 
   </div>
-
-
-
 </form>
-
-
+<div class="col" style=" margin: 10px"><h4>所有研究所/班级信息:</h4></div>
+<div>
+      <% @ins.each do |f|%>
+          <form class="form-horizontal" >
+            <div class="form-group well" style="margin-left: 10px; margin-right: 10px">
+            <%# ------保留上一次的输入-------%>
+            <h5 class="col-md-2"><%=f.name%></h5>
+            <h5 class="col-md-3"><%=f.class_code%></h5>
+            <h5 class="col-md-3">目前共有学生<%=User.where("student_class = '" + f.class_code.to_s + "'").count%>名</h5>
+            </div>
+          </form>
+      <% end %>
+</div>
