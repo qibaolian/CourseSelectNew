@@ -72,5 +72,6 @@ class User < ActiveRecord::Base
     self.email = email.downcase
   end
 
+  mount_uploaders :avatars, AvatarUploader
 
 end
