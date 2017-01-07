@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <h1>
-        Listing Informs :
-        <small class="btn btn-warning pull-right"><%= link_to 'New Inform', new_article_path %></small>
+        公告列表 :
+        <small class="btn btn-warning pull-right"><%= link_to '发布新公告', new_article_path %></small>
       </h1>
     </div>
   </div>
@@ -20,9 +20,9 @@
             <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><%= article.title %></td>
             <td >
               <%= article.updated_at.to_date %>
-              <%= link_to 'Show', article %>
-              <%= link_to 'Edit', edit_article_path(article) %>
-              <%= link_to 'Destroy', article, method:  :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to '查看', article %>
+              <%= link_to '编辑', edit_article_path(article) %>
+              <%= link_to '删除', article, method:  :delete, data: { confirm: '你确定要删除此条公告么?' } %>
             </td>
           </tr>
       <% end %>

@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
+  <div>
+
+    <div class="btn btn-warning "><%= link_to '编辑', edit_article_path(@article) %></div>
+    <div class="btn btn-info "><%= link_to '返回', articles_path %></div>
+
+  </div>
   <div class="span7 text-center">
-    <div>
-      <h1>
-        Show Informs :
-        <small class="btn btn-warning "><%= link_to 'Edit', edit_article_path(@article) %></small>
-        <small class="btn btn-info "><%= link_to 'Back', articles_path %></small>
-      </h1>
-    </div>
+
 
     <h3>
       <strong>
