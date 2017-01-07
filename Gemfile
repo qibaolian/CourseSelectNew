@@ -11,6 +11,9 @@ gem 'rails_admin', '~> 0.8.1'
 #邮件服务
 gem 'sendgrid-ruby'
 
+#国际化
+gem 'rails-i18n'
+
 # gem 'carrierwave'
 # gem 'paperclip'
 # gem 'will_paginate'

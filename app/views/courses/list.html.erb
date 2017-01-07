@@ -14,70 +14,81 @@
           <!-- 条件查询-->
           <form class="form-horizontal" role="form" method="get" action= <%= list_courses_path %>>
             <div class="form-group well" style="margin-left: 10px; margin-right: 10px">
-              <div class="col-sm-1">
+              <table>
+                <tr>
+                  <td style="width: 7%" align="right">
+                    <label style="margin-bottom: 0px" for="department">学院：</label>
+                  </td>
+                  <td style="width: 13%">
+                    <select  class="form-control" id="department" name="department">
+                      <% $Department.each do |key, value|%>
+                          <%# ------保留上一次的输入-------%>
+                          <% if params[:department] != key.to_s%>
+                              <option value= <%= key %>><%= value.values_at(:dept_name).first %></option>
+                          <% else%>
+                              <option value= <%= key %> selected><%= value.values_at(:dept_name).first %></option>
+                          <% end %>
 
-              </div>
-              <div class="col-sm-2">
-                <label for="department">学院</label>
-                <select  class="form-control" id="department" name="department">
-                  <% $Department.each do |key, value|%>
-                      <%# ------保留上一次的输入-------%>
-                      <% if params[:department] != key.to_s%>
-                          <option value= <%= key %>><%= value.values_at(:dept_name).first %></option>
-                      <% else%>
-                          <option value= <%= key %> selected><%= value.values_at(:dept_name).first %></option>
                       <% end %>
+                    </select>
+                  </td>
 
-                  <% end %>
-                </select>
-              </div>
-
-              <div class="col-sm-2">
-                <label for="week">星期</label>
-                <select  class="form-control" id="week" name="week">
-                  <% (0..7).each do |i|%>
-                      <%# ------保留上一次的输入-------%>
-                      <% if params[:week] != i.to_s %>
-                          <option value= <%= i %>><%= $Week.values_at(i).first %></option>
-                      <% else%>
-                          <option value= <%= i %> selected><%= $Week.values_at(i).first %></option>
+                  <td style="width: 7%" align="right">
+                    <label style="margin-bottom: 0px" for="week">星期：</label>
+                  </td>
+                  <td style="width: 13%">
+                    <select  class="form-control" id="week" name="week">
+                      <% (0..7).each do |i|%>
+                          <%# ------保留上一次的输入-------%>
+                          <% if params[:week] != i.to_s %>
+                              <option value= <%= i %>><%= $Week.values_at(i).first %></option>
+                          <% else%>
+                              <option value= <%= i %> selected><%= $Week.values_at(i).first %></option>
+                          <% end %>
                       <% end %>
-                  <% end %>
-                </select>
-              </div>
+                    </select>
+                  </td>
 
-              <div class="col-sm-2">
-                <label for="course_time">节次</label>
-                <select  class="form-control" id="course_time" name="course_time">
-                  <% $ClassTime.each do |key, value|%>
-                      <%# ------保留上一次的输入-------%>
-                      <% if params[:course_time] != key.to_s %>
-                        <option value= <%= key %>><%= value %></option>
-                      <% else%>
-                        <option value= <%= key %> selected><%= value %></option>
+                  <td style="width: 7%" align="right">
+                    <label style="margin-bottom: 0px" for="course_time">节次：</label>
+                  </td>
+                  <td style="width: 13%">
+                    <select  class="form-control" id="course_time" name="course_time">
+                      <% $ClassTime.each do |key, value|%>
+                          <%# ------保留上一次的输入-------%>
+                          <% if params[:course_time] != key.to_s %>
+                              <option value= <%= key %>><%= value %></option>
+                          <% else%>
+                              <option value= <%= key %> selected><%= value %></option>
+                          <% end %>
                       <% end %>
-                  <% end %>
-                </select>
-              </div>
+                    </select>
+                  </td>
 
-              <div class="col-sm-2">
-                <label for="course_name">课程名称</label>
-                <input type="text"  class="form-control" id="course_name" name="course_name"
-                      <%# ------保留上一次的输入-------%>
-                       <% if params[:course_name] == ''%>
-                        placeholder="请输入课程名称"
-                      <% else %>
-                        placeholder=<%= params[:course_name] %>
-                      <% end %>
-                       >
-                </input>
-              </div>
+                  <td style="width: 10%" align="right">
+                    <label style="margin-bottom: 0px" for="course_name">课程名称：</label>
+                  </td>
+                  <td style="width: 13%">
+                    <input type="text"  class="form-control" id="course_name" name="course_name"
+                           <%# ------保留上一次的输入-------%>
+                           <% if params[:course_name] == ''%>
+                           placeholder="请输入课程名称"
+                           <% else %>
+                           value="<%= params[:course_name]%>"
+                           <% end %>
+                           >
+                    </input>
+                  </td>
+
+
+                  <td style="width: 17%">
+                    <input type="submit" class="btn btn-block btn-info" id="submit" name= "submit" value="查询" style="width: 50%; margin: auto">
+                  </td>
+                </tr>
+              </table>
 
               <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-              <div class="col-sm-3">
-                <label for="submit"></label>
-                <input type="submit" class="btn btn-block btn-info" id="submit" name= "submit" value="查询" style="width: 50%; margin: auto">
-              </div>
+
 
             </div>
 
@@ -98,6 +109,7 @@
                 <th>授课方式</th>
                 <th>考试方式</th>
                 <th>主讲教师</th>
+                <th>操作</th>
 
               </tr>
               </thead>
@@ -120,10 +132,11 @@
                     <td><%= @course[i].teaching_type %></td>
                     <td><%= @course[i].exam_type %></td>
                     <td><%= @course[i].teacher.name %></td>
-                    <% if @course[i].limit_num == @course[i].student_num %>
-                      <td><%= link_to "课程已满", 'javascript:void(0);', class: 'btn-sm btn-danger disabled' %>
+                    <%# 防止并发情况的发生，将 == 改成 <=%>
+                    <% if @course[i].limit_num != nil && @course[i].limit_num <= @course[i].student_num %>
+                      <td><%= link_to "已满", 'javascript:void(0);', class: 'btn-sm btn-danger disabled' %>
                     <% else%>
-                      <td><%= link_to "加入课程", select_course_path(@course[i]), class: 'btn-sm btn-info' %></td>
+                      <td><%= link_to "选课", select_course_path(@course[i]), class: 'btn-sm btn-info' %></td>
                     <% end %>
 
                   </tr>

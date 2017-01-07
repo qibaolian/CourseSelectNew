@@ -70,12 +70,12 @@
           <table  border="0" cellspacing="0" cellpadding="0" class="table" style="table-layout:fixed">
             <tr class=" label-primary">
               <th scope="col" width="75%" ><span style="color:white">公告列表</span></th>
-              <th scope="col"><span style="color:white">最后更新时间/操作</span></th>
+              <th scope="col" class="text-center"><span style="color:white;">最后更新时间</span></th>
             </tr>
             <% @announcement.each do |announcement| %>
                 <tr style="border-bottom: 1px solid #CCCCCC">
 
-                  <td> <%= link_to announcement.title,{:controller => 'homes',:action => 'index3',:request => announcement.title} %></td>
+                  <td> <%= link_to announcement.title,{:controller => 'homes', :action => 'inform_content', :request => announcement.title} %></td>
                   <td align="center"><%= announcement.updated_at.to_date%></td>
                 </tr>
             <% end %>

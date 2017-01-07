@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_action :student_logged_in, only: [:select, :quit, :list, :search,:sumCredit,:courseTable]
+  before_action :student_logged_in, only: [:select, :quit, :list, :sumCredit, :courseTable]
   before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update]
   before_action :logged_in, only: :index
 
@@ -76,25 +76,14 @@ class CoursesController < ApplicationController
   end
 
   def list
-    if params[:department] == nil
-      params[:department] = '0'
-    end
 
-    if params[:week] == nil
-      params[:week] = '0'
-    end
+    #初始化变量
+    params[:department] ||= '0'
+    params[:week] ||= '0'
+    params[:course_time] ||= '0'
+    params[:course_name] ||= ''
+    params[:authenticity_token] ||= ''
 
-    if params[:course_time] == nil
-      params[:course_time] = '0'
-    end
-
-    if params[:course_name] == nil
-      params[:course_name] = ''
-    end
-
-    if params[:authenticity_token] == nil
-      params[:authenticity_token] = ''
-    end
 
     search_string = "true"
     if params[:submit] != nil
@@ -121,9 +110,7 @@ class CoursesController < ApplicationController
     #----------分页功能的实现---------#
     total = @course.count
     params[:total] = total
-    if params[:page] == nil
-      params[:page] = 1  #进行初始化
-    end
+    params[:page] ||= 1  #进行初始化
     if total % $PageSize == 0
       params[:pageNum] = total / $PageSize
     else
@@ -175,7 +162,7 @@ class CoursesController < ApplicationController
               (interval_c[0].to_i <= interval_ci[0].to_i && interval_c[1].to_i >= interval_ci[1].to_i) ||
           #（情形3）开始早于已选课的结束，结束晚于已选课的结束
               (interval_c[1].to_i > interval_ci[0].to_i && interval_c[1].to_i < interval_ci[1].to_i)
-            flash={:danger => "课程:(#{@course.name}) 和课程:(#{c.name})在时间上存在冲突"}
+            flash={:danger => "#{@course.name} 和 #{c.name})在时间上存在冲突"}
             redirect_to courses_path, flash: flash and return
           end
         end
@@ -215,9 +202,7 @@ class CoursesController < ApplicationController
     #----------分页功能的实现---------#
     total = @course.count
     params[:total] = total
-    if params[:page] == nil
-      params[:page] = 1  #进行初始化
-    end
+    params[:page] ||= 1  #进行初始化
     if total % $PageSize == 0
       params[:pageNum] = total / $PageSize
     else
@@ -232,7 +217,7 @@ class CoursesController < ApplicationController
     else
       params[:pageEnd] = params[:total].to_i - 1  #最后一页
     end
-
+    @credits = get_credits
   end
 
 
@@ -266,4 +251,20 @@ class CoursesController < ApplicationController
                                    :credit, :limit_num, :class_room, :course_time, :course_week)
   end
 
+
+  def get_credits
+    credits = { 'credit_total' => 0,    #总学分
+                 'credit_core' => 0,     #核心课学分
+                 'credit_compulsory' =>0           #必修课学分
+    }
+    current_user.courses.each do |course|
+      credits['credit_total'] += course.credit.to_i
+      if course.course_type=='公共选修课'
+        credits['credit_compulsory'] += course.credit.to_i
+      elsif course.course_type =='专业核心课' || course.course_type == '一级学科核心课'
+        credits['credit_core'] += course.credit.to_i
+      end
+    end
+    return credits
+  end
 end

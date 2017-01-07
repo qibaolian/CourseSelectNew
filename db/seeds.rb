@@ -70,7 +70,7 @@ end
 
 
 User.create(
-    name: "计算机与控制学院管理员",
+    name: "计算机与控制学院教学秘书",
     email: "admin@test.com",
     num: "201628008629001",
     major: "计算机软件与理论",

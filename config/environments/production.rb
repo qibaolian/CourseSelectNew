@@ -93,4 +93,7 @@ Rails.application.configure do
       :domain         => 'heroku.com',
       :enable_starttls_auto => true
   }
+
+
+  config.i18n.available_locales = :zh-CN
 end

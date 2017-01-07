@@ -26,7 +26,7 @@ Rails.application.configure do
       :domain => "yeah.net", #服务器域名，如xxx@yeah.net域名就是yeah.net
       :authentication => :login,
       :user_name => "hydrogenlee",  #邮件用户名，如xxx@yeah.net用户名就是xxx
-      :password => "4132zllqjthywawj",  #与登录密码不同，此处是客户端授权密码，切记！
+      :password => "",  #与登录密码不同，此处是客户端授权密码，切记！
   }
 
   # Print deprecation notices to the Rails logger.
@@ -51,4 +51,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+
+  config.i18n.available_locales = :zh-CN
 end

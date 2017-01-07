@@ -3,10 +3,7 @@ class HomesController < ApplicationController
     #@articles = inform::articles.all
     @announcement=Inform::Article.all
   end
-  def index2
-
-  end
-  def index3
+  def inform_content
     #@articles = inform::articles.all
     @announcement1=Inform::Article.all
     #find_by_title(params[:request])

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   mount RuCaptcha::Engine => "/rucaptcha"
   root 'homes#index'
-  get "/homes/index3"
+  get "/homes/inform_content"
 
   resources :courses do
     member do

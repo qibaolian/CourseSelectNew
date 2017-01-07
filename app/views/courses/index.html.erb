@@ -9,8 +9,8 @@
 
       <div class="panel panel-primary filterable">
         <div class="panel-heading">
-          <% if teacher_logged_in? %><h3 class="panel-title">授课列表</h3><% end %>
-          <% if student_logged_in? %><h3 class="panel-title">已选课程</h3><% end %>
+          <% if teacher_logged_in? %><h3 class="panel-title">教师授课列表</h3><% end %>
+          <% if student_logged_in? %><h3 class="panel-title">学生已选课程</h3><% end %>
         </div>
         <div class="panel-body">
           <table class="table table-responsive table-condensed table-hover">
@@ -22,6 +22,11 @@
               <th>课时/学分</th>
               <th>考试方式</th>
               <th>主讲教师</th>
+              <% if teacher_logged_in? %>
+                  <th>编辑</th>
+              <% end %>
+              <th>删除</th>
+
             </tr>
 
             <tbody>
@@ -40,7 +45,7 @@
                                       :data => {confirm: '确定要删除此课程?'} %></td>
                   <% elsif student_logged_in? %>
                       <td><%= link_to "删除", '', class: 'btn-sm btn-danger', :data =>{toggle: 'modal',
-                               target: '#myModal', path: quit_course_url(@course[i]), name: @course[i].name} %></td>
+                               target: '#myModal', path: quit_course_url(@course[i]), name: @course[i].name, credit: @credits} %></td>
                   <% end %>
                 </tr>
             <% end %>
@@ -58,7 +63,7 @@
                    <li><a href=<%= courses_path + '?page=1'%> >首页</a></li>
                    <li><a href=<%= courses_path + '?page='+(params[:page].to_i - 1).to_s %>>上一页</a></li>
                 <% end %>
-                <li><a>共<%= params[:total] %>条记录 当前为第<%= params[:page] %>页 共<%= params[:pageNum] %>页</a></li>
+                <li><a>共<%= params[:total] %> 条记录 当前为第<%= params[:page] %>页 共<%= params[:pageNum] %>页</a></li>
                 <% if params[:page].to_i == params[:pageNum]%>
                     <li class="disabled"><a>下一页</a></li>
                     <li class="disabled"><a>末页</a></li>
@@ -94,19 +99,24 @@
   </div><!-- /.modal -->
 </div>
 
+<!-- 模态框的js操作-->
 <script>
-
   $('#modal-submit').click(function () {
+    //当单击提交按钮时，重定向删除课程的地址
     window.location.href = $('#modal-submit').attr('href');
   });
 
   $('#myModal').on('show.bs.modal', function (e) {
     //获取是单击了哪个按钮
     var button = $(e.relatedTarget);
-    var name = '确定要删除课程：'+ button.data('name') + '?';
+    console.log(button.data('credit'));
+    var content = '确定要删除课程：'+ button.data('name') + '?<br>当前你已经选修（包括此门课）的总分学为：' + button.data('credit')["credit_total"]
+        + '<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中专业课： '+ button.data('credit')["credit_core"] + ' 公共必修课为： ' + button.data('credit')["credit_compulsory"];
     var url = button.data('path');
+    //更新模态框的url地址
     $('#modal-submit').attr('href', url);
-    $('#modal-body-content').html(name);
+    //更新内容
+    $('#modal-body-content').html(content);
   });
-
 </script>
+
