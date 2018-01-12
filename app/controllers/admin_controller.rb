@@ -1,4 +1,4 @@
-class AdminController < ApplicationController
+ class AdminController < ApplicationController
   before_action :admin_logged_in
   def default
   end

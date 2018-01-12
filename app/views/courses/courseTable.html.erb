@@ -22,19 +22,19 @@
             <tr>
               <th width="3%"></th>
               <th width="13%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>节次（上课时间）/星期</th>
-              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期一</th>
-              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期二</th>
-              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期三</th>
-              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期四</th>
-              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期五</th>
-              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期六</th>
-              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期日</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期一(Mon)</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期二(Tue)</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期三(Wed)</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期四(Thu)</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期五(Fri)</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期六(Sat)</th>
+              <th width="12%" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>星期日(Sun)</th>
             </tr>
             </thead>
             <tbody>
                 <tr>
                  <th  rowspan="4" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>上午</th>
-                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>01（08：30-09：20）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>1（08：30-09：20）</th>
                   <% j=0 %>
                   <% @courseT[0,7].each do |courseT| %>
                       <% if courseT == 2 || courseT == 3  || courseT == 4%>
@@ -46,7 +46,7 @@
                   <% end %>
                 </tr>
                 <tr>
-                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>02（09：20-10：10）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>2（09：20-10：10）</th>
                   <% j=0 %>
                   <% @courseT[7,7].each do |courseT| %>
                       <% if courseT == 2 || courseT == 3  || courseT == 4%>
@@ -58,7 +58,7 @@
                   <% end %>
                 </tr>
                 <tr>
-                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>03（10：30-11：20）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>3（10：30-11：20）</th>
                   <% j=0 %>
                   <% @courseT[14,7].each do |courseT| %>
                       <% if courseT == 2 || courseT == 3  || courseT == 4%>
@@ -70,7 +70,7 @@
                   <% end %>
                 </tr>
                 <tr>
-                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>04（11：20-12：10）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>4（11：20-12：10）</th>
                   <% j=0 %>
                   <% @courseT[21,7].each do |courseT| %>
                       <% if courseT == 2 || courseT == 3  || courseT == 4%>
@@ -83,7 +83,7 @@
                 </tr>
                 <tr>
                   <th rowspan="4" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>下午</th>
-                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>05（13：30-14：20）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>5（13：30-14：20）</th>
                   <% j=0 %>
                   <% @courseT[28,7].each do |courseT| %>
                       <% if courseT == 2 || courseT == 3  || courseT == 4%>
@@ -95,7 +95,7 @@
                   <% end %>
                 </tr>
                 <tr>
-                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>06（14：20-15：10）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>6（14：20-15：10）</th>
                   <% j=0 %>
                   <% @courseT[35,7].each do |courseT| %>
                       <% if courseT == 2 || courseT == 3  || courseT == 4%>
@@ -107,7 +107,7 @@
                   <% end %>
                 </tr>
                 <tr>
-                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>07（15：30-16：20）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>7（15：30-16：20）</th>
                   <% j=0 %>
                   <% @courseT[42,7].each do |courseT| %>
                       <% if courseT == 2 || courseT == 3  || courseT == 4%>
@@ -119,7 +119,7 @@
                   <% end %>
                 </tr>
                 <tr>
-                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>08（16：20-17：10）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>8（16：20-17：10）</th>
                   <% j=0 %>
                   <% @courseT[49,7].each do |courseT| %>
                       <% if courseT == 2 || courseT == 3  || courseT == 4%>
@@ -132,7 +132,7 @@
                 </tr>
                 <tr>
                   <th rowspan="3" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>晚上</th>
-                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>09（19：00-19：50）</th>
+                  <th rowspan=$rowspan style='vertical-align: middle;text-align: center;'>9（19：00-19：50）</th>
                   <% j=0 %>
                   <% @courseT[56,7].each do |courseT| %>
                       <% if courseT == 2 || courseT == 3  || courseT == 4%>

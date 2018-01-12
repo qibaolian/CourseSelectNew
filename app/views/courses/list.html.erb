@@ -17,7 +17,7 @@
               <table>
                 <tr>
                   <td style="width: 7%" align="right">
-                    <label style="margin-bottom: 0px" for="department">学院：</label>
+                    <label style="margin-bottom: 0px" for="department">按学院查找：</label>
                   </td>
                   <td style="width: 13%">
                     <select  class="form-control" id="department" name="department">
@@ -33,24 +33,9 @@
                     </select>
                   </td>
 
-                  <td style="width: 7%" align="right">
-                    <label style="margin-bottom: 0px" for="week">星期：</label>
-                  </td>
-                  <td style="width: 13%">
-                    <select  class="form-control" id="week" name="week">
-                      <% (0..7).each do |i|%>
-                          <%# ------保留上一次的输入-------%>
-                          <% if params[:week] != i.to_s %>
-                              <option value= <%= i %>><%= $Week.values_at(i).first %></option>
-                          <% else%>
-                              <option value= <%= i %> selected><%= $Week.values_at(i).first %></option>
-                          <% end %>
-                      <% end %>
-                    </select>
-                  </td>
 
                   <td style="width: 7%" align="right">
-                    <label style="margin-bottom: 0px" for="course_time">节次：</label>
+                    <label style="margin-bottom: 0px" for="course_time">按时间查找：</label>
                   </td>
                   <td style="width: 13%">
                     <select  class="form-control" id="course_time" name="course_time">
@@ -66,13 +51,13 @@
                   </td>
 
                   <td style="width: 10%" align="right">
-                    <label style="margin-bottom: 0px" for="course_name">课程名称：</label>
+                    <label style="margin-bottom: 0px" for="course_name">按课程名称查找：</label>
                   </td>
                   <td style="width: 13%">
                     <input type="text"  class="form-control" id="course_name" name="course_name"
                            <%# ------保留上一次的输入-------%>
                            <% if params[:course_name] == ''%>
-                           placeholder="请输入课程名称"
+                           placeholder="课程名称"
                            <% else %>
                            value="<%= params[:course_name]%>"
                            <% end %>

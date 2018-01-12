@@ -32,8 +32,8 @@
 
             <div class="form-group">
               <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
-                <%= f.text_field :department, class: 'form-control', value: $Department.values_at(current_user.department)[0].values_at(:dept_name),"disabled"=>true%>
+                <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>   <!--"disabled"=>true-->
+                <%= f.text_field :department, class: 'form-control', value:$Department.values_at(current_user.department)[0].values_at(:dept_name),"disabled"=>true %>
               </div>
             </div>
 

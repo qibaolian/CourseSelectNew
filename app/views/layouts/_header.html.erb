@@ -14,9 +14,9 @@
         <% elsif teacher_logged_in? %>
             <li class=<%= "active" if params[:controller]=="courses" %>> <%= link_to "课程管理", courses_path %></li>
         <% elsif admin_logged_in? %>
-            <li> <%= link_to "管理员面板", admin_path %></li>
+            <li> <%= link_to "管理信息", admin_path %></li>
         <% end %>
-        <li class=<%= "active" if params[:controller]=="help" %>> <%= link_to "开发指南", help_path %></li>
+       
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -29,7 +29,8 @@
             </li>
 
             <li>
-              <p class="navbar-text"><%= $Department.values_at(current_user.department)[0][:dept_name] %></p>
+             <p class="navbar-text"><%= $Department.values_at(current_user.department)[0][:dept_name] %></p>
+            
             </li>
 
             <li>
@@ -44,7 +45,11 @@
                   登陆 <span class="	glyphicon glyphicon-user"></span>
               <% end %>
             </li>
-
+          
+                  <li><a href   ="/users/new">
+                  注册 <span class="	glyphicon glyphicon-log-in"></span>
+                       </a>           
+            </li>
 
         <% end %>
       </ul>

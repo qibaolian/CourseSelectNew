@@ -94,18 +94,15 @@ class CoursesController < ApplicationController
 
     search_string = "true"
     if params[:submit] != nil
-      params[:page] = 1   #每次查询都是从第一页开始的
+      params[:page] = 1   #从第一页开始查找
       if params[:department] != '0'
         search_string += " and department = '" + params[:department] + "'"
-      end
-      if params[:week] != '0'
-        search_string += " and course_day = '" + params[:week] + "'"
       end
       if params[:course_time] != '0'
         search_string += " and course_class = '" + params[:course_time] + "'"
       end
       if params[:course_name] != nil
-        #模糊查询
+        #按关键字查找
         search_string += " and name like '%" + params[:course_name] + "%'"
       end
     end
@@ -132,44 +129,42 @@ class CoursesController < ApplicationController
     else
       params[:pageEnd] = params[:total].to_i - 1  #最后一页
     end
-
-
-
+    
   end
 
-  #解决各种选课冲突
+  #解决选课冲突
   def select
     @course=Course.find_by_id(params[:id])
-    #课程没有余量
+    #课程人数已满
     if @course.limit_num == @course.student_num
       flash={:danger => "该课程已满: #{@course.name}"}
       redirect_to courses_path, flash: flash and return
     end
 
-    #选择同一门课（不是一个班）
+    #选择同名课程
     current_user.courses.each do |c|
       if c.name == @course.name
-        flash={:danger => "你过去已经选择了课程: #{@course.name}"}
+        flash={:danger => "你已经选择了该类课程: #{@course.name}"}
         redirect_to courses_path, flash: flash and return
       end
     end
 
 
-    #时间存在冲突
+    #时间冲突
     @course=Course.find_by_id(params[:id])
     current_user.courses.each do |c|
       @course_info = CourseInfo.find_by_course_code(c.id)
       interval_c = @course_info.course_class.split('_')
       @course.course_infos.each do |ci|
         interval_ci = ci.course_class.split('_')
-        #（情形1）开始早于已选课的开始，结束晚于已选课的开始
+        #（1）结束时间晚于已选课的开始时间
         if ci.course_day == @course_info.course_day
           if (interval_c[0].to_i > interval_ci[0].to_i && interval_c[0].to_i < interval_ci[1].to_i) ||
-          #（情形2）开始晚于已选课的开始，结束早于已选课的结束
+          #（2）开始时间晚于已选课的开始时间
               (interval_c[0].to_i <= interval_ci[0].to_i && interval_c[1].to_i >= interval_ci[1].to_i) ||
-          #（情形3）开始早于已选课的结束，结束晚于已选课的结束
+          #（3）开始时间早于已选课的结束时间
               (interval_c[1].to_i > interval_ci[0].to_i && interval_c[1].to_i < interval_ci[1].to_i)
-            flash={:danger => "#{@course.name} 和 #{c.name} 在时间上存在冲突"}
+            flash={:danger => "#{@course.name} 和 #{c.name} 存在时间冲突"}
             redirect_to courses_path, flash: flash and return
           end
         end
