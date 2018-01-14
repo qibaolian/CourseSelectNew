@@ -3,9 +3,9 @@
 ### [中文教程1](http://blog.csdn.net/ppp8300885/article/details/52594839) [中文教程2](http://blog.csdn.net/ppp8300885/article/details/52601560)
 
 
-这个样本系统是基于国科大研究生课程 (高级软件工程) 开发的项目,目的是帮助入门者学习RoR (Ruby on Rails) 
+这个样本系统是基于国科大研究生课程 (高级软件工程) 开发的项目,运用RoR (Ruby on Rails) 来开发的一个高校选课系统。
 
-适合新学者的入手的第一个项目 ([演示Demo戳这里](https://course621.herokuapp.com/ ))，入门者可以在这个样本系统上增加更多的功能。
+([演示Demo戳这里](https://course621.herokuapp.com/ ))
 
 ### 目前功能：
 
